@@ -5,7 +5,7 @@ import Player from "./models/Player";
 import './App.css';
 
 const App = () => {
-    const [ player, setPlayer ] = useState<Player>( new Player( [ "Player one", "Player two" ] ) );
+    const [ player, setPlayer ] = useState<Player>( new Player( ['1', '2']) );
     
     const endTurn = () => {
         setPlayer( player.getNext() );

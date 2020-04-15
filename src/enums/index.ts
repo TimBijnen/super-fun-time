@@ -1,1 +1,1 @@
-export { default as MARKERS } from "./Markers";
+export { default as MARKERS, MARKERS_VALUES } from "./Markers";
