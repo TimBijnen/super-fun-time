@@ -1,27 +1,46 @@
+:root {
+  --primary: #FF9700;
+  --primary-darker: #BF8530;
+  --primary-darkest: #A66200;
+  --primary-lighter: #FFB140;
+  --primary-lightest: #FFC673;
+  --secondary: #0C5AA6;
+  --secondary-darker: #26527C;
+  --secondary-darkest: #04396C;
+  --secondary-lighter: #408AD2;
+  --secondary-lightest: #679ED2;
+}
+
 body,
 #root {
   height: 100vh;
   width: 100vw;
+  background-color:var(--secondary-lightest);
 }
 
 #root {
   display: grid;
-  grid-template-columns: auto 600px auto;
-  grid-template-rows: auto 800px auto;
+  grid-template-columns: auto 300px;
+  grid-template-rows: 100px auto;
 }
 
 .timer {
   grid-row: 1;
   grid-column: 2;
 }
+
+.ttt-header {
+  grid-row: 1;
+  grid-column: 1;
+}
+
 .ttt-board {
   display: grid;
   grid-template-rows: repeat(3, 100px);
   grid-template-columns: repeat(3, 100px);
   grid-row: 2;
-  grid-column: 2;
+  grid-column: 1;
   margin: auto;
-  background-color: black;
 }
 
 .ttt-field {
@@ -30,30 +49,34 @@ body,
 }
 
 .ttt-field:hover {
-  background-color: grey;
+  /* background-color: grey; */
+  border: 2px solid black;
 }
 
 .card {
-  border: 2px solid black;
+  border: 2px solid var(--primary-darkest);
   border-radius: 8px;
   display: grid;
   grid-template-rows: 70px auto 40px;
+  background-color: #FFC673;
 }
 
+.ttt-wrapper,
 .setup {
   grid-row: 2;
-  grid-column: 2;
-  
+  grid-column: 1;
+  margin-left: 200px;
+  margin-bottom: 100px;
 }
 
 .card-header {
   text-align: center;
   height: 70px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--primary-darkest);
 }
 
 .card-footer {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--primary-darkest);
   height: 40px;
   display: flex;
 }
@@ -61,13 +84,31 @@ body,
 button {
   border-radius: 8px;
   padding: 8px;
-  margin: auto 0 auto auto;
+  margin: auto 8px auto auto;
   min-width: 100px;
+  border-color: var(--primary-darkest);
+  background-color: var(--primary);
+}
+
+button:not(:disabled):hover {
+  cursor: pointer;
+  color: white;
+  background-color: var(--primary-darkest);
+}
+
+button:disabled {
+  background-color: var(--primary-lighter);
 }
 
 .card-body {
   margin: 40px;
   height: auto;
+  display: flex;
+}
+
+.setup-inputs {
+  display: flex;
+  height: 40px;
 }
 
 input {
@@ -75,38 +116,89 @@ input {
   height: 25px;
   border-radius: 8px;
   box-shadow: none;
-  border: 1px solid black;
-  margin-bottom: 3px;
+  border: 1px solid var(--primary-darkest);
+  margin: auto;
+}
+
+input:first-of-type {
+  background-color: var(--primary-lightest)
+}
+
+input:last-of-type {
+  background-color: var(--secondary-lightest)
+}
+
+.setup-buttongroup {
+  min-width: 40px;
+  height: 40px;
+  margin: 0 8px;
+
+}
+.setup-button {
+  max-width: 60px;
+  border-radius: 50%;
+  border: 1px solid var(--secondary-darkest);
+  text-align: center;
+  line-height: 40px;
+  color: white;
+  background: linear-gradient(-90deg, var(--secondary-darkest) 0%, var(--secondary-darkest) 50%, var(--primary-darkest) 50%, var(--primary-darkest) 100%);
+  cursor: pointer;
+}
+.setup-button.disabled {
+  opacity: 0.1;
+  cursor: not-allowed;
+}
+.setup-span {
+  position: absolute;
+  width: 40px;
+}
+.setup-span p {
+  text-align: center;
+  width: 200px;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
 }
 
 .setup-create {
-  display: flex;
-  height: 34px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--primary-darkest);
 }
+
+.setup-playerlist {
+  padding: 8px;
+  color: var(--secondary-darkest);
+}
+.setup-playerlist li {
+  line-height: 30px;
+}
+
 
 .scoreboard {
   grid-row: 2;
-  grid-column: 3;
-  margin: 0 12px auto 12px;
+  grid-column: 2;
+  margin: 0 10px 100px 10px;
 }
 
-.players {
-  grid-row: 2;
-  grid-column: 1;
-}
+.marker-X {
+  background-color: var(--secondary-darkest);
 
-.player.active {
-  font-size: 12px;
 }
-.player {
-  font-size: 9px;
+.marker-O {
+  background-color: var(--primary-darkest);
 }
 
 ul {
+  width: 100%;
   margin: 0;
   padding: 0;
 }
-.score-li {
+li {
   list-style: none;
   text-align: center;
+}
+
+.score-li h3,
+.score-li h6 {
+  margin: 0 0 4px 0;
 }

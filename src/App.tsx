@@ -27,7 +27,7 @@ const App = () => {
 
     return (
         <React.Fragment>
-            <ScoreBoard />
+            <ScoreBoard player={ player } />
             { player ? (
                 <Board player={ player } endTurn={ endTurn } />
             ) : (

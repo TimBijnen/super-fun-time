@@ -29,29 +29,22 @@ export default ( { player, endTurn }: Board ): React.ReactElement => {
     };
 
     return (
-        <React.Fragment>
-            <Timer player={ player } />
-            <div className="players">
-                <div className="player active">
-                    <div>{ player.name } { player.isWinner() && "Winner" }</div>
-                    <div>{ player.getScore() }</div>
-                </div>
-                <div className="player">
-                    <div>{ player.getNext().name } { player.isWinner() && "Winner" }</div>
-                    <div>{ player.getNext().getScore() }</div>
+        <div className="card ttt-wrapper">
+            <div className="card-header ttt-header">
+                <h3>{ player.getNext().name } make your move</h3>
+            </div>
+            <div className="card-body">
+                <div className="ttt-board">
+                    { game.map( ( field, i ) => (
+                        <div
+                            className={ `ttt-field marker-${ field }` }
+                            onClick={ () => field === MARKERS.EMPTY && updateGame( i ) }
+                        >
+                            { field }
+                        </div>
+                    ) ) }
                 </div>
             </div>
-            <ScoreBoard player={ player } />
-            <div className="ttt-board">
-                { game.map( ( field, i ) => (
-                    <div
-                        className="ttt-field"
-                        onClick={ () => field === MARKERS.EMPTY && updateGame( i ) }
-                    >
-                        { field }
-                    </div>
-                ) ) }
-            </div>
-        </React.Fragment>
+        </div>
     );
 }

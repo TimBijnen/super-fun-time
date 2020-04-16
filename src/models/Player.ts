@@ -7,6 +7,7 @@ export default class Player {
     private next: Player;
     private winner: boolean = false;
     private moves: any = [];
+    private index: number = 0;
     public turnStartTime: number = Date.now();
     public timeSpent: number = 0;
     public name?: string;
@@ -16,6 +17,7 @@ export default class Player {
     // knows about the next player.
     constructor( players: any[] = DEFAULT_PLAYERS, index: number = 0, first: Player | null = null ) {
         this.next = this;
+        this.index = index;
         this.marker = MARKERS_VALUES[ index ];
 
         const player = players.shift();
@@ -57,7 +59,16 @@ export default class Player {
         return this.next;
     }
 
-    public getNext = (): Player => this.next;
+    public getNext = ( index?: number ): Player => {
+        if ( !index ) {
+            return this.next;
+        }
+        let next = this.next;
+        while ( next.index !== index ) {
+            next = next.next;
+        }
+        return next;
+    };
     private setNext( p: Player ): void {
       this.next = p;
     }
@@ -66,4 +77,10 @@ export default class Player {
     public setWinner( w: boolean ): void {
       this.winner = w;
     }
+
+    // public getPlayerByIndex( index: number ) {
+    //     while ( this.next.index !== index ) {
+    //         this.getNext();
+    //     }
+    // }
 };

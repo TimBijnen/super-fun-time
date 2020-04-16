@@ -1,6 +1,4 @@
 import React from "react";
-import Player from "../models/Player";
-
 
 export default ( { player }: any ) => {
     let scores = JSON.parse(localStorage.getItem( "ttt-scores" ) || "[]");
@@ -20,7 +18,7 @@ export default ( { player }: any ) => {
                     }
                 </ul>
             </div>
-            <div className="card-footer">Current score: { player && player.getScore() }</div>
+            <div className="card-footer">{ player && `Current score:  ${ player.getScore() }` }</div>
         </div>
     );
 }

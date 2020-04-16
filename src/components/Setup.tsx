@@ -4,8 +4,13 @@ import Player from "../models/Player";
 
 
 export default ( { done }: any ) => {
-    const [ players, setPlayers ] = useState<string[]>( [] );
-    const [ name, setName ] = useState( "" );
+    const [ names, setNames ] = useState<string[]>( [ "", "" ] );
+    const isValid = names.filter( ( n ) => n !== "" ).length === 2 && names[ 0 ] !== names[ 1 ];
+    const onClick = () => {
+        if ( isValid ) {
+            done( new Player( names ) )
+        }
+    };
 
     return (
         <div className="card setup">
@@ -14,21 +19,19 @@ export default ( { done }: any ) => {
                     Start new game
                 </h3>
             </div>
-            <div className="card-body">
-                <input value={ name } onChange={ e => setName( e.target.value ) } />
-                <button disabled={ name === "" } onClick={ () => {
-                    setPlayers( [ ...players, name ] );
-                    setName( "" );
-                } }>
-                    Create player
-                </button>
-                { players.map( p => <div key={ p }>{ p }</div>)}
-            </div>
-
-            <div className="card-footer">
-                <button disabled={ players.length < 1 } onClick={ () => done( new Player( players ) ) }>
-                    Start game
-                </button>
+            <div className="card-body setup-inputs">
+                <input value={ names[ 0 ] } onChange={ e => setNames( [ e.target.value, names[ 1 ] ] ) } />
+                <div className="setup-buttongroup" onClick={ onClick }>
+                    <div className={ `setup-button ${ !isValid && "disabled" }` }>
+                        VS
+                    </div>
+                    <span className="setup-span">
+                        <p>
+                            { isValid && "Click to start game" }
+                        </p>
+                    </span>
+                </div>
+                <input value={ names[ 1 ] } onChange={ e => setNames( [ names[ 0 ], e.target.value ] ) } />
             </div>
         </div>
     )
