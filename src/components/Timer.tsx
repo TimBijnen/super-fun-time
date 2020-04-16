@@ -15,13 +15,9 @@ export default ( { player }: any ) => {
         timeExpired: 0,
     } );
 
-    const startTimer = useCallback( () => {
-        return setInterval( () => {
-            if ( time.start ) {
-                setTime( { ...time, timeExpired: (Date.now() - time.start) / 1000 } );
-            }
-        }, 50 );
-    }, [ time ] );
+    const startTimer = useCallback( () => setInterval( () => {
+        time.start && setTime( { ...time, timeExpired: (Date.now() - time.start) / 1000 } );
+    }, 50 ), [ time] );
 
     useEffect( () => {
         const timer = startTimer();

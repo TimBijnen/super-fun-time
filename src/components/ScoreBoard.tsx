@@ -8,14 +8,12 @@ export default ( { player }: any ) => {
             <div className="card-header"><h3>Scoreboard</h3></div>
             <div className="card-body">
                 <ul>
-                    {
-                        scores.map( ( highscore: any, index: number ) => (
-                            <li className="score-li">
-                                <h3>{ highscore.name }</h3>
-                                <h6>{ highscore.score }</h6>
-                            </li>
-                        ) )
-                    }
+                    { scores.map( ( highscore: any, index: number ) => (
+                        <li className="score-li">
+                            <h3>{ highscore.name }</h3>
+                            <h6>{ highscore.score }</h6>
+                        </li>
+                    ) ) }
                 </ul>
             </div>
             <div className="card-footer">

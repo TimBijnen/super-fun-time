@@ -1,23 +1,15 @@
 import React, { useState } from "react";
 import Player from "../models/Player";
 
-
-
 export default ( { done }: any ) => {
     const [ names, setNames ] = useState<string[]>( [ "", "" ] );
     const isValid = names.filter( ( n ) => n !== "" ).length === 2 && names[ 0 ] !== names[ 1 ];
-    const onClick = () => {
-        if ( isValid ) {
-            done( new Player( names ) )
-        }
-    };
+    const onClick = () => isValid && done( new Player( names ) );
 
     return (
         <div className="card setup">
             <div className="card-header">
-                <h3>
-                    Start new game
-                </h3>
+                <h3>Start new game</h3>
             </div>
             <div className="card-body setup-inputs">
                 <input value={ names[ 0 ] } onChange={ e => setNames( [ e.target.value, names[ 1 ] ] ) } />

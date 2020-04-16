@@ -18,7 +18,8 @@ export default ( { player, done }: GameResult ) => {
                         <React.Fragment>
                             Winning player: { player.name }<br />
                             Amount of moves: { player.moves.length }<br />
-                            Time spent: { formatTime( player.timeSpent ) }
+                            Time spent: { formatTime( player.timeSpent ) }<br />
+                            Total score: { player.getScore() }
                         </React.Fragment>
                     ) : "Draw"}
                 </div>

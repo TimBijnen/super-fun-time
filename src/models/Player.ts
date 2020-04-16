@@ -77,10 +77,4 @@ export default class Player {
     public setWinner( w: boolean ): void {
       this.winner = w;
     }
-
-    // public getPlayerByIndex( index: number ) {
-    //     while ( this.next.index !== index ) {
-    //         this.getNext();
-    //     }
-    // }
 };
