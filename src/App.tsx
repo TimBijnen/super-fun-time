@@ -4,8 +4,10 @@ import Setup from "./components/Setup";
 import Player from "./models/Player";
 import './App.css';
 import ScoreBoard from './components/ScoreBoard';
+import GameResult from './components/GameResult';
 
 const App = () => {
+    const [ gameFinished, setGameFinished ] = useState( false );
     const [ player, setPlayer ] = useState<Player>();
     
     const addScoreToScoreboard = ( name?: string, score?: number ) => {
@@ -16,20 +18,32 @@ const App = () => {
         localStorage.setItem( "ttt-scores", JSON.stringify(scores) );
     }
     
-    const endTurn = () => {
+    const endTurn = ( canMakeMove: boolean = true ) => {
         if ( player && !player.isWinner() ) { 
-            setPlayer( player.endTurn() );
+            if ( canMakeMove ) {
+                setPlayer( player.endTurn() );
+            } else {
+                setGameFinished( true );
+            }
         } else if (player) {
             addScoreToScoreboard( player.name, player.getScore() );
-            setPlayer( undefined );
+            setGameFinished( true );
         }
+    }
+
+    const newGame = () => {
+        setGameFinished( false );
+        setPlayer( undefined );
     }
 
     return (
         <React.Fragment>
             <ScoreBoard player={ player } />
             { player ? (
-                <Board player={ player } endTurn={ endTurn } />
+                <React.Fragment>
+                    <Board player={ player } endTurn={ endTurn } />
+                    { gameFinished && <GameResult player={ player } done={ newGame } />}
+                </React.Fragment>
             ) : (
                 <Setup done={ setPlayer } />
             ) }

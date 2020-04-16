@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 
-const formatTime = ( t: number ) => {
+export const formatTime = ( t: number ) => {
     const minutes = Math.floor( t / 60 );
     const seconds = t % 60;
     if ( seconds < 10 ) {

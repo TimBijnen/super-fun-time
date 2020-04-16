@@ -10,7 +10,7 @@ const VICTORIES = "XXX......|...XXX...|......XXX|X...X...X|..X.X.X..|X..X..X..|.
   
 type Board = {
     player: Player;
-    endTurn: () => void;
+    endTurn: ( v: boolean) => void;
 }
 
 export default ( { player, endTurn }: Board ): React.ReactElement => {
@@ -25,13 +25,13 @@ export default ( { player, endTurn }: Board ): React.ReactElement => {
         const nextGame = game.map( ( v: MARKERS, i: number ) => i === index ? player.marker : v )
         validateGame( nextGame );
         setGame( nextGame );
-        endTurn();
+        endTurn( nextGame.filter( ( v ) => v === MARKERS.EMPTY ).length > 0 );
     };
 
     return (
         <div className="card ttt-wrapper">
             <div className="card-header ttt-header">
-                <h3>{ player.getNext().name } make your move</h3>
+                <h3>{ player.name } make your move</h3>
             </div>
             <div className="card-body">
                 <div className="ttt-board">
@@ -40,9 +40,7 @@ export default ( { player, endTurn }: Board ): React.ReactElement => {
                         <div
                             className={ `ttt-field marker-${ field }` }
                             onClick={ () => field === MARKERS.EMPTY && updateGame( i ) }
-                        >
-                            { field }
-                        </div>
+                        />
                     ) ) }
                 </div>
             </div>
