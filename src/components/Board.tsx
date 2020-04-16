@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState } from "react";
 import Timer from "../components/Timer";
 import Player from "../models/Player";
 import { MARKERS } from "../enums";
@@ -29,7 +29,7 @@ export default ( { player, endTurn }: Board ): React.ReactElement => {
 
     return (
         <React.Fragment>
-            <Timer />
+            <Timer player={ player }/>
             <div className="ttt-board">
                 { game.map( ( field, i ) => (
                     <div

@@ -9,7 +9,7 @@ const App = () => {
     
     const endTurn = () => {
         if ( !player.isWinner() ) { 
-            setPlayer( player.getNext() );
+            setPlayer( player.endTurn() );
         }
     }
 
@@ -17,7 +17,14 @@ const App = () => {
         <div>
             { player ? (
                 <React.Fragment>
-                  <div>{ player.name } { player.isWinner() && "Winner" }</div>
+                    <div>
+                        <div>{ player.name } { player.isWinner() && "Winner" }</div>
+                        <div>{ player.getScore() }</div>
+                    </div>
+                    <div>
+                        <div>{ player.getNext().name } { player.isWinner() && "Winner" }</div>
+                        <div>{ player.getNext().getScore() }</div>
+                    </div>
                   <Board player={ player } endTurn={ endTurn } />
                 </React.Fragment>
             ) : (

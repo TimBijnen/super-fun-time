@@ -1,10 +1,14 @@
 import { MARKERS, MARKERS_VALUES } from "../enums";
 
 const DEFAULT_PLAYERS = [ "Player one", "Player two" ];
+const BASE_SCORE = 1000;
 
 export default class Player {
     private next: Player;
     private winner: boolean = false;
+    private moves: any = [];
+    public turnStartTime: number = Date.now();
+    public timeSpent: number = 0;
     public name?: string;
     public marker: MARKERS = MARKERS.X; 
     
@@ -34,6 +38,23 @@ export default class Player {
                 this.setNext( first );
             }
         }
+    }
+
+    public getScore() {
+        return BASE_SCORE / ( this.moves.length + 1 ) - this.timeSpent;
+    }
+
+    public startTurn() {
+        this.turnStartTime = Date.now();
+    }
+    
+    public endTurn() {
+        const start = this.turnStartTime;
+        const end = Date.now();
+        this.timeSpent += (end - start) / 1000;
+        this.moves = [ ...this.moves, { start, end } ];
+        this.next.startTurn();
+        return this.next;
     }
 
     public getNext = (): Player => this.next;
