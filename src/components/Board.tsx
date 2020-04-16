@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Timer from "../components/Timer";
 import Player from "../models/Player";
 import { MARKERS } from "../enums";
-import ScoreBoard from "./ScoreBoard";
 
 export const EMPTY_BOARD: MARKERS[] = new Array( 9 ).fill( MARKERS.EMPTY );
 
