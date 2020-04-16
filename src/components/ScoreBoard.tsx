@@ -4,24 +4,23 @@ import Player from "../models/Player";
 
 export default ( { player }: any ) => {
     let scores = JSON.parse(localStorage.getItem( "ttt-scores" ) || "[]");
-    if ( player.isWinner() ) {
-        scores = [ ...scores, { name: player.name, score: player.getScore() } ];
-        scores = scores.sort( ( a: any, b: any ) => a.score > b.score ? -1 : 1);
-        scores = scores.slice( 0, 10 );
-        localStorage.setItem( "ttt-scores", JSON.stringify(scores) );
-    }
+
     return (
-        <div>
-            CURRENT SCORE: { player.getScore() }
-            <br />
-            {
-                scores.map( ( highscore: any ) => (
-                    <div>
-                        { highscore.name }
-                        { highscore.score }
-                    </div>
-                ) )
-            }
+        <div className="card scoreboard">
+            <div className="card-header"><h3>Scoreboard</h3></div>
+            <div className="card-body">
+                <ul>
+                    {
+                        scores.map( ( highscore: any ) => (
+                            <li className="score-li">
+                                <h3>{ highscore.name }</h3>
+                                <h6>{ highscore.score }</h6>
+                            </li>
+                        ) )
+                    }
+                </ul>
+            </div>
+            <div className="card-footer">Current score: { player && player.getScore() }</div>
         </div>
     );
 }

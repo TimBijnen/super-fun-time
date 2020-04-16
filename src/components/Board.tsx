@@ -31,13 +31,15 @@ export default ( { player, endTurn }: Board ): React.ReactElement => {
     return (
         <React.Fragment>
             <Timer player={ player } />
-            <div>
-                <div>{ player.name } { player.isWinner() && "Winner" }</div>
-                <div>{ player.getScore() }</div>
-            </div>
-            <div>
-                <div>{ player.getNext().name } { player.isWinner() && "Winner" }</div>
-                <div>{ player.getNext().getScore() }</div>
+            <div className="players">
+                <div className="player active">
+                    <div>{ player.name } { player.isWinner() && "Winner" }</div>
+                    <div>{ player.getScore() }</div>
+                </div>
+                <div className="player">
+                    <div>{ player.getNext().name } { player.isWinner() && "Winner" }</div>
+                    <div>{ player.getNext().getScore() }</div>
+                </div>
             </div>
             <ScoreBoard player={ player } />
             <div className="ttt-board">

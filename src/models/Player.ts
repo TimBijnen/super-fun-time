@@ -41,7 +41,7 @@ export default class Player {
     }
 
     public getScore() {
-        return BASE_SCORE / ( this.moves.length + 1 ) - this.timeSpent;
+        return Math.round( BASE_SCORE / ( this.moves.length + 1 ) - this.timeSpent );
     }
 
     public startTurn() {
