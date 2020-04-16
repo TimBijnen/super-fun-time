@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
+import Timer from "../components/Timer";
 import Player from "../models/Player";
 import { MARKERS } from "../enums";
 
@@ -27,15 +28,18 @@ export default ( { player, endTurn }: Board ): React.ReactElement => {
     };
 
     return (
-        <div className="ttt-board">
-            { game.map( ( field, i ) => (
-                <div
-                    className="ttt-field"
-                    onClick={ () => field === MARKERS.EMPTY && updateGame( i ) }
-                >
-                    { field }
-                </div>
-            ) ) }
-        </div>
+        <React.Fragment>
+            <Timer />
+            <div className="ttt-board">
+                { game.map( ( field, i ) => (
+                    <div
+                        className="ttt-field"
+                        onClick={ () => field === MARKERS.EMPTY && updateGame( i ) }
+                    >
+                        { field }
+                    </div>
+                ) ) }
+            </div>
+        </React.Fragment>
     );
 }
