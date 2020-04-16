@@ -5,17 +5,19 @@ import Player from "./models/Player";
 import './App.css';
 
 const App = () => {
-    const [ player, setPlayer ] = useState<Player>( new Player( ['1', '2']) );
+    const [ player, setPlayer ] = useState<Player>( new Player( [ "Player one", "Player two" ] ) );
     
     const endTurn = () => {
-        setPlayer( player.getNext() );
+        if ( !player.isWinner() ) { 
+            setPlayer( player.getNext() );
+        }
     }
 
     return (
         <div>
             { player ? (
                 <React.Fragment>
-                  <div>{player.name }</div>
+                  <div>{ player.name } { player.isWinner() && "Winner" }</div>
                   <Board player={ player } endTurn={ endTurn } />
                 </React.Fragment>
             ) : (
