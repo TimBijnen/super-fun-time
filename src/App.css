@@ -26,7 +26,46 @@ body,
 
 .timer {
   grid-row: 1;
-  grid-column: 2;
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+.timer-main {
+  text-align: center;
+}
+.timer-players {
+  display: flex;
+}
+.timer-players > div {
+  text-align: center;
+  width: 100%;
+  font-weight: bold;
+}
+.timer-slider {
+  width: 33%;
+  transition: margin 1s, border-color 0.3s;
+}
+.timer-slider.left {
+  border-bottom: 4px solid var(--secondary);
+  margin-right: 66%;
+  margin-left: 0;
+}
+.timer-slider.right {
+  border-bottom: 4px solid var(--primary);
+  /* margin: auto; */
+  margin-right: 0;
+  margin-left: 66%;
+}
+.timer-players > div:first-of-type {
+  text-align: left;
+  font-weight: normal;
+}
+.timer-players > div:last-of-type {
+  text-align: right;
+  font-weight: normal;
+}
+.player-time-active {
+  font-weight: bold !important;
 }
 
 .ttt-header {
@@ -36,7 +75,7 @@ body,
 
 .ttt-board {
   display: grid;
-  grid-template-rows: repeat(3, 100px);
+  grid-template-rows: 60px repeat(3, 100px);
   grid-template-columns: repeat(3, 100px);
   grid-row: 2;
   grid-column: 1;
@@ -67,6 +106,10 @@ body,
   grid-column: 1;
   margin-left: 200px;
   margin-bottom: 100px;
+}
+
+.score-active {
+  font-weight: bold;
 }
 
 .card-header {

@@ -35,6 +35,7 @@ export default ( { player, endTurn }: Board ): React.ReactElement => {
             </div>
             <div className="card-body">
                 <div className="ttt-board">
+                    <Timer player={ player } />
                     { game.map( ( field, i ) => (
                         <div
                             className={ `ttt-field marker-${ field }` }

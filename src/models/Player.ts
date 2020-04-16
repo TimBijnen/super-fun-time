@@ -6,7 +6,7 @@ const BASE_SCORE = 1000;
 export default class Player {
     private next: Player;
     private winner: boolean = false;
-    private moves: any = [];
+    public moves: any = [];
     private index: number = 0;
     public turnStartTime: number = Date.now();
     public timeSpent: number = 0;
@@ -60,7 +60,7 @@ export default class Player {
     }
 
     public getNext = ( index?: number ): Player => {
-        if ( !index ) {
+        if ( !index && index !== 0 ) {
             return this.next;
         }
         let next = this.next;
