@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Timer from "../components/Timer";
 import Player from "../models/Player";
 import { MARKERS } from "../enums";
+import ScoreBoard from "./ScoreBoard";
 
 export const EMPTY_BOARD: MARKERS[] = new Array( 9 ).fill( MARKERS.EMPTY );
 
@@ -29,7 +30,16 @@ export default ( { player, endTurn }: Board ): React.ReactElement => {
 
     return (
         <React.Fragment>
-            <Timer player={ player }/>
+            <Timer player={ player } />
+            <div>
+                <div>{ player.name } { player.isWinner() && "Winner" }</div>
+                <div>{ player.getScore() }</div>
+            </div>
+            <div>
+                <div>{ player.getNext().name } { player.isWinner() && "Winner" }</div>
+                <div>{ player.getNext().getScore() }</div>
+            </div>
+            <ScoreBoard player={ player } />
             <div className="ttt-board">
                 { game.map( ( field, i ) => (
                     <div

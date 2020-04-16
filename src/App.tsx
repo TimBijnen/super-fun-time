@@ -16,17 +16,7 @@ const App = () => {
     return (
         <div>
             { player ? (
-                <React.Fragment>
-                    <div>
-                        <div>{ player.name } { player.isWinner() && "Winner" }</div>
-                        <div>{ player.getScore() }</div>
-                    </div>
-                    <div>
-                        <div>{ player.getNext().name } { player.isWinner() && "Winner" }</div>
-                        <div>{ player.getNext().getScore() }</div>
-                    </div>
-                  <Board player={ player } endTurn={ endTurn } />
-                </React.Fragment>
+                <Board player={ player } endTurn={ endTurn } />
             ) : (
                 <Setup done={ setPlayer } />
             ) }
