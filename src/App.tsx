@@ -19,11 +19,14 @@ const App = () => {
     }
     
     const endTurn = ( canMakeMove: boolean = true ) => {
+        player && player.endTurn();
         if ( player && !player.isWinner() ) { 
             // Player did not win
             if ( canMakeMove ) {
                 // There are still unfilled fields, end players turn.
-                setPlayer( player.endTurn() );
+                const next = player.getNext();
+                next.startTurn();
+                setPlayer( next );
             } else {
                 // All fields have been filled, end game in draw.
                 setGameFinished( true );

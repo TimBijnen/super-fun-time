@@ -55,8 +55,8 @@ export default class Player {
         const end = Date.now();
         this.timeSpent += (end - start) / 1000;
         this.moves = [ ...this.moves, { start, end } ];
-        this.next.startTurn();
-        return this.next;
+        // this.next.startTurn();
+        // return this.next;
     }
 
     public getNext = ( index?: number ): Player => {
@@ -70,11 +70,11 @@ export default class Player {
         return next;
     };
     private setNext( p: Player ): void {
-      this.next = p;
+        this.next = p;
     }
 
     public isWinner = (): boolean => this.winner;
     public setWinner( w: boolean ): void {
-      this.winner = w;
+        this.winner = w;
     }
 };
